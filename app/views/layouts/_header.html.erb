@@ -2,14 +2,14 @@
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#"> <i class="fa fa-circle-o-notch"></i> Stuckdo</a>
-    </div>
+  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+    <span class="sr-only">Toggle navigation</span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+  </button>
+  <%= link_to "<i class='fa fa-circle-o-notch'></i> Stukdo".html_safe, root_path, class: "navbar-brand" %>
+</div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -29,33 +29,24 @@
           </ul>
         </li>
       </ul>
+      
+    <ul class="nav navbar-nav navbar-right">
+  <% if current_user %>
+    <li><%= link_to "Settings", edit_user_registration_path %></li>
+    <li><%= link_to "Logout", destroy_user_session_path %></li>
+  <% else %>
+    <li><%= link_to "About", about_path %></li>
+    <li><%= link_to "Login", new_user_session_path %></li>
+  <% end %>
+</ul>
+      
       <form class="navbar-form navbar-left" role="search">
         <div class="form-group">
           
         </div>
         
       </form>
-      <ul class="nav navbar-nav navbar-right">
-        <li></li>
-
-        <ul class="nav navbar-nav navbar-right">
-          <li>
-        <%= link_to "About US", about_path%>
-        </li>
-        <li>
-        <%= link_to "Login", new_user_session_path%>
-        </li>
-        <li class="dropdown">
-          
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-          </ul>
-        </li>
-      </ul>
+      
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>

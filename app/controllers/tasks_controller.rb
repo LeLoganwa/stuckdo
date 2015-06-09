@@ -1,12 +1,24 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :set_task, only: [:show, :edit, :update, :destroy,:change]
 
   respond_to :html
 
-  def index
-    @tasks = Task.all
-    respond_with(@tasks)
-  end
+  #def index
+   # 
+def index
+  @tasks = current_user.tasks
+  @to_do = current_user.tasks.where(state: "to_do")
+  @doing = current_user.tasks.where(state: "doing")
+  @done = current_user.tasks.where(state: "done")
+  respond_with(@tasks)
+  
+ end
+
+def task_params
+  params.require(:task).permit(:content,:State)
+end
+    
+
 
   def show
     respond_with(@task)
@@ -21,7 +33,7 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(task_params)
+    @task = current_user.tasks.new(task_params)
     @task.save
     respond_with(@task)
   end
@@ -30,6 +42,14 @@ class TasksController < ApplicationController
     @task.update(task_params)
     respond_with(@task)
   end
+
+  def change
+  #@task.update_attributes(State: params[:state])
+
+  #respond_to do |format|
+   #  format.html {redirect_to tasks_path, notice: "Task Update"}
+  #end
+ end
 
   def destroy
     @task.destroy
@@ -42,6 +62,6 @@ class TasksController < ApplicationController
     end
 
     def task_params
-      params.require(:task).permit(:content)
+      params.require(:task).permit(:content,:State)
     end
 end
