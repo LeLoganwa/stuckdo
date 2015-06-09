@@ -44,11 +44,11 @@ end
   end
 
   def change
-  #@task.update_attributes(State: params[:state])
+  @task.update_attributes(State: params[:state])
 
-  #respond_to do |format|
-   #  format.html {redirect_to tasks_path, notice: "Task Update"}
-  #end
+  respond_to do |format|
+    format.html {redirect_to tasks_path, notice: "Task Update"}
+  end
  end
 
   def destroy

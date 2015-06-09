@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   resources :tasks do
   member do
-    put :change
+    get :change
   end
 end
   
